@@ -21,7 +21,9 @@ class _CalculationState extends State<Calculation> {
   }
 
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      body: Column(children: [
       ResultDisplay(text: _getDisplayText()),
       Row(
         children: [
@@ -31,9 +33,7 @@ class _CalculationState extends State<Calculation> {
               foregroundColor: MaterialStateProperty.all<Color>(Colors.orange),
             ),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (BuildContext context) => const SciCalculator()),
               );
             },
@@ -104,7 +104,8 @@ class _CalculationState extends State<Calculation> {
               backgroundColor: Color.fromRGBO(220, 220, 220, 1)),
         ],
       ),
-    ]);
+    ]),
+    );
   }
 
   Widget _getButton({

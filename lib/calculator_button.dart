@@ -12,7 +12,6 @@ class CalculatorButton extends StatelessWidget {
   final double size;
   final Color? backgroundColor;
   final Color? labelColor;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,10 +20,10 @@ class CalculatorButton extends StatelessWidget {
           width: size,
           height: size,
           decoration: BoxDecoration(
-              boxShadow: [
+              /* boxShadow: [
                 BoxShadow(
                     color: Colors.grey, offset: Offset(1, 1), blurRadius: 2),
-              ],
+              ],*/
               borderRadius: BorderRadius.all(Radius.circular(size / 2)),
               color: backgroundColor),
           child: InkWell(
