@@ -13,9 +13,9 @@ class SciCalculator extends StatefulWidget {
 
 class _SciCalculatorState extends State<SciCalculator> {
   double width = 0;
-  double? firstOperand;
+  int? firstOperand;
   String? operator;
-  double? secondOperand;
+  int? secondOperand;
   double? result;
   @override
   void didChangeDependencies() {
@@ -155,7 +155,7 @@ class _SciCalculatorState extends State<SciCalculator> {
     });
   }
 
-  numberPressed(double number) {
+  numberPressed(int number) {
     setState(() {
       if (result != null) {
         result = null;
@@ -167,14 +167,14 @@ class _SciCalculatorState extends State<SciCalculator> {
         return;
       }
       if (operator == null) {
-        firstOperand = double.parse('$firstOperand$number');
+        firstOperand = int.parse('$firstOperand$number');
         return;
       }
       if (secondOperand == null) {
         secondOperand = number;
         return;
       }
-      secondOperand = double.parse('$secondOperand$number');
+      secondOperand = int.parse('$secondOperand$number');
     });
   }
 
@@ -185,22 +185,22 @@ class _SciCalculatorState extends State<SciCalculator> {
     setState(() {
       switch (operator) {
         case 'sin':
-          result = sin(secondOperand!);
+          result = sin(secondOperand!.toDouble());
           break;
         case 'cos':
-          result = cos(secondOperand!);
+          result = cos(secondOperand!.toDouble());
           break;
         case 'tan':
-          result = tan(secondOperand!);
+          result = tan(secondOperand!.toDouble());
           break;
         case 'log':
-          result = log(secondOperand!);
+          result = log(secondOperand!.toDouble());
           break;
         case '√':
-          result = sqrt(secondOperand!);
+          result = sqrt(secondOperand!.toDouble());
           break;
       }
-      firstOperand = result;
+      firstOperand = result!.round();
       operator = null;
       secondOperand = null;
       result = null;

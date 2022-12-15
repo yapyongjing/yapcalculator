@@ -10,9 +10,9 @@ class Calculation extends StatefulWidget {
 
 class _CalculationState extends State<Calculation> {
   double width = 0;
-  double? firstOperand;
+  int? firstOperand;
   String? operator;
-  double? secondOperand;
+  int? secondOperand;
   double? result;
   @override
   void didChangeDependencies() {
@@ -132,7 +132,7 @@ class _CalculationState extends State<Calculation> {
     });
   }
 
-  numberPressed(double number) {
+  numberPressed(int number) {
     setState(() {
       if (result != null) {
         result = null;
@@ -144,14 +144,14 @@ class _CalculationState extends State<Calculation> {
         return;
       }
       if (operator == null) {
-        firstOperand = double.parse('$firstOperand$number');
+        firstOperand = int.parse('$firstOperand$number');
         return;
       }
       if (secondOperand == null) {
         secondOperand = number;
         return;
       }
-      secondOperand = double.parse('$secondOperand$number');
+      secondOperand = int.parse('$secondOperand$number');
     });
   }
 
@@ -162,22 +162,22 @@ class _CalculationState extends State<Calculation> {
     setState(() {
       switch (operator) {
         case '+':
-          result = firstOperand! + secondOperand!;
+          result = firstOperand!.toDouble() + secondOperand!.toDouble();
           break;
         case '-':
-          result = firstOperand! - secondOperand!;
+          result = firstOperand!.toDouble() + secondOperand!.toDouble();
           break;
         case '*':
-          result = firstOperand! * secondOperand!;
+          result = firstOperand!.toDouble() + secondOperand!.toDouble();
           break;
         case '/':
           if (secondOperand == 0) {
             return;
           }
-          result = firstOperand! / secondOperand!;
+          result = (firstOperand!.toDouble() / secondOperand!.toDouble());;
           break;
       }
-      firstOperand = result;
+      firstOperand = result!.round();
       operator = null;
       secondOperand = null;
       result = null;
